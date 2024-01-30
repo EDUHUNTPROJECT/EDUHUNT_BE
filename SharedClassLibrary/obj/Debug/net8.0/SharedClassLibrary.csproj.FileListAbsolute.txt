@@ -1,0 +1,16 @@
+C:\diskD\code\PROJECT\EDUHUNT\BE\EDUHUNT_BE\SharedClassLibrary\bin\Debug\net8.0\SharedClassLibrary.deps.json
+C:\diskD\code\PROJECT\EDUHUNT\BE\EDUHUNT_BE\SharedClassLibrary\bin\Debug\net8.0\SharedClassLibrary.dll
+C:\diskD\code\PROJECT\EDUHUNT\BE\EDUHUNT_BE\SharedClassLibrary\bin\Debug\net8.0\SharedClassLibrary.pdb
+C:\diskD\code\PROJECT\EDUHUNT\BE\EDUHUNT_BE\SharedClassLibrary\obj\Debug\net8.0\SharedClassLibrary.GeneratedMSBuildEditorConfig.editorconfig
+C:\diskD\code\PROJECT\EDUHUNT\BE\EDUHUNT_BE\SharedClassLibrary\obj\Debug\net8.0\SharedClassLibrary.AssemblyInfoInputs.cache
+C:\diskD\code\PROJECT\EDUHUNT\BE\EDUHUNT_BE\SharedClassLibrary\obj\Debug\net8.0\SharedClassLibrary.AssemblyInfo.cs
+C:\diskD\code\PROJECT\EDUHUNT\BE\EDUHUNT_BE\SharedClassLibrary\obj\Debug\net8.0\SharedClassLibrary.csproj.CoreCompileInputs.cache
+C:\diskD\code\PROJECT\EDUHUNT\BE\EDUHUNT_BE\SharedClassLibrary\obj\Debug\net8.0\SharedClassLibrary.dll
+C:\diskD\code\PROJECT\EDUHUNT\BE\EDUHUNT_BE\SharedClassLibrary\obj\Debug\net8.0\refint\SharedClassLibrary.dll
+C:\diskD\code\PROJECT\EDUHUNT\BE\EDUHUNT_BE\SharedClassLibrary\obj\Debug\net8.0\SharedClassLibrary.pdb
+C:\diskD\code\PROJECT\EDUHUNT\BE\EDUHUNT_BE\SharedClassLibrary\obj\Debug\net8.0\ref\SharedClassLibrary.dll
+C:\diskD\code\PROJECT\EDUHUNT\BE\EDUHUNT_BE\SharedClassLibrary\bin\Debug\net8.0\selenium-manager\linux\selenium-manager
+C:\diskD\code\PROJECT\EDUHUNT\BE\EDUHUNT_BE\SharedClassLibrary\bin\Debug\net8.0\selenium-manager\macos\selenium-manager
+C:\diskD\code\PROJECT\EDUHUNT\BE\EDUHUNT_BE\SharedClassLibrary\bin\Debug\net8.0\selenium-manager\windows\selenium-manager.exe
+C:\diskD\code\PROJECT\EDUHUNT\BE\EDUHUNT_BE\SharedClassLibrary\obj\Debug\net8.0\SharedClassLibrary.csproj.AssemblyReference.cache
+C:\diskD\code\PROJECT\EDUHUNT\BE\EDUHUNT_BE\SharedClassLibrary\obj\Debug\net8.0\SharedClassLibrary.sourcelink.json
