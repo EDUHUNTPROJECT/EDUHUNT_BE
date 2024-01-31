@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\diskD\\code\\PROJECT\\EDUHUNT\\BE\\EDUHUNT_BE\\SharedClassLibrary\\SharedClassLibrary.csproj": {}
+    "C:\\diskD\\code\\PROJECT\\EDUHUNT\\BEEDU\\EDUHUNT_BE\\SharedClassLibrary\\SharedClassLibrary.csproj": {}
   },
   "projects": {
-    "C:\\diskD\\code\\PROJECT\\EDUHUNT\\BE\\EDUHUNT_BE\\SharedClassLibrary\\SharedClassLibrary.csproj": {
+    "C:\\diskD\\code\\PROJECT\\EDUHUNT\\BEEDU\\EDUHUNT_BE\\SharedClassLibrary\\SharedClassLibrary.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\diskD\\code\\PROJECT\\EDUHUNT\\BE\\EDUHUNT_BE\\SharedClassLibrary\\SharedClassLibrary.csproj",
+        "projectUniqueName": "C:\\diskD\\code\\PROJECT\\EDUHUNT\\BEEDU\\EDUHUNT_BE\\SharedClassLibrary\\SharedClassLibrary.csproj",
         "projectName": "SharedClassLibrary",
-        "projectPath": "C:\\diskD\\code\\PROJECT\\EDUHUNT\\BE\\EDUHUNT_BE\\SharedClassLibrary\\SharedClassLibrary.csproj",
+        "projectPath": "C:\\diskD\\code\\PROJECT\\EDUHUNT\\BEEDU\\EDUHUNT_BE\\SharedClassLibrary\\SharedClassLibrary.csproj",
         "packagesPath": "C:\\Users\\anqua\\.nuget\\packages\\",
-        "outputPath": "C:\\diskD\\code\\PROJECT\\EDUHUNT\\BE\\EDUHUNT_BE\\SharedClassLibrary\\obj\\",
+        "outputPath": "C:\\diskD\\code\\PROJECT\\EDUHUNT\\BEEDU\\EDUHUNT_BE\\SharedClassLibrary\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\anqua\\AppData\\Roaming\\NuGet\\NuGet.Config",

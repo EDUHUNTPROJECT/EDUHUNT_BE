@@ -13,9 +13,6 @@ namespace EDUHUNT_BE.Data
         public DbSet<ScholarshipInfo> ScholarshipInfos { get; set; }
         public DbSet<Message> Messages { get; set; }
         public DbSet<QA> QAs { get; set; }
-
-
-        public DbSet<Profile> Profile { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
@@ -57,21 +54,6 @@ namespace EDUHUNT_BE.Data
                 // Additional configurations for QA entity can be added here if needed
             });
 
-            modelBuilder.Entity<Profile>(entity =>
-            {
-                entity.HasKey(e => e.Id); // Assuming Id is the primary key
-                entity.Property(e => e.UserId).IsRequired();
-                entity.Property(e => e.CreatedAt).IsRequired();
-                entity.Property(e => e.ContentURL).IsRequired(false); 
-                entity.Property(e => e.FirstName).IsRequired(false); 
-                entity.Property(e => e.LastName).IsRequired(false); 
-                entity.Property(e => e.UserName).IsRequired(false); 
-                entity.Property(e => e.ContactNumber).IsRequired(false); 
-                entity.Property(e => e.Address).IsRequired(false);
-                entity.Property(e => e.Description).IsRequired(false);
-                entity.Property(e=> e.UrlAvatar).IsRequired(false);
-                // Additional configurations for the Profile entity can be added here if needed
-            });
             // Additional configurations for other entities can be added here if needed
         }
     }
