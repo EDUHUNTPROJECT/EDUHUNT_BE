@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "LT6+92mqGZlXm/WVoBx6Bs5apAJ18B8jP9TyYPTRF56AqYr/bDBY5BcV/tyWzU9ZZU+0eh6D8y1+yXJEvpqkyg==",
+  "dgSpecHash": "jgY7k503nxNQonP17pKSZ3OYU4XrbSyOEoLWj5aJVUzSNskhYawYdO58oO7CIty/C6VUsM/HQIEek09/SJpURA==",
   "success": true,
-  "projectFilePath": "C:\\diskD\\code\\PROJECT\\EDUHUNT\\BE\\EDUHUNT_BE\\EDUHUNT_BE\\EDUHUNT_BE.csproj",
+  "projectFilePath": "C:\\diskD\\code\\PROJECT\\EDUHUNT\\BEEDU\\EDUHUNT_BE\\EDUHUNT_BE\\EDUHUNT_BE.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\anqua\\.nuget\\packages\\azure.core\\1.25.0\\azure.core.1.25.0.nupkg.sha512",
     "C:\\Users\\anqua\\.nuget\\packages\\azure.identity\\1.7.0\\azure.identity.1.7.0.nupkg.sha512",
