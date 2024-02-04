@@ -30,6 +30,8 @@ namespace EDUHUNT_BE.Data
                 entity.Property(e => e.CategoryId);
                 entity.Property(e => e.AuthorId);
                 entity.Property(e => e.IsInSite);
+                entity.Property(e => e.Url).HasMaxLength(255).IsRequired(false);
+                entity.Property(e => e.CreatedAt).IsRequired();
 
                 // Additional configurations can be added here based on your requirements
             });

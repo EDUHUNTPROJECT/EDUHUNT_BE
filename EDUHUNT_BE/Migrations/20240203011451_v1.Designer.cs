@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EDUHUNT_BE.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20240131055537_v2")]
-    partial class v2
+    [Migration("20240203011451_v1")]
+    partial class v1
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -223,6 +223,10 @@ namespace EDUHUNT_BE.Migrations
 
                     b.Property<string>("Title")
                         .IsRequired()
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)");
+
+                    b.Property<string>("Url")
                         .HasMaxLength(255)
                         .HasColumnType("nvarchar(255)");
 

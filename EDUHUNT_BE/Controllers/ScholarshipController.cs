@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using EDUHUNT_BE.Data;
+using Microsoft.AspNetCore.Mvc;
 using SharedClassLibrary.Contracts;
 using SharedClassLibrary.DTOs;
 
@@ -7,7 +8,10 @@ namespace EDUHUNT_BE.Controllers
     [Route("api/[controller]")]
     [ApiController]
     public class ScholarshipController : ControllerBase
+
     {
+        private readonly AppDbContext _context;
+
         private readonly IScholarship _scholarshipRepository;
 
         public ScholarshipController(IScholarship scholarshipRepository)
@@ -21,6 +25,10 @@ namespace EDUHUNT_BE.Controllers
             try
             {
                 var scholarships = await _scholarshipRepository.GetScholarships();
+
+
+
+
                 return Ok(scholarships);
             }
             catch (Exception ex)
