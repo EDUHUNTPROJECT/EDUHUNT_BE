@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\diskD\\code\\PROJECT\\EDUHUNT\\BE\\EDUHUNT_BE\\SharedClassLibrary\\SharedClassLibrary.csproj": {}
+    "D:\\.NET\\Project\\EDUHUNT_BE\\SharedClassLibrary\\SharedClassLibrary.csproj": {}
   },
   "projects": {
-    "C:\\diskD\\code\\PROJECT\\EDUHUNT\\BE\\EDUHUNT_BE\\SharedClassLibrary\\SharedClassLibrary.csproj": {
+    "D:\\.NET\\Project\\EDUHUNT_BE\\SharedClassLibrary\\SharedClassLibrary.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\diskD\\code\\PROJECT\\EDUHUNT\\BE\\EDUHUNT_BE\\SharedClassLibrary\\SharedClassLibrary.csproj",
+        "projectUniqueName": "D:\\.NET\\Project\\EDUHUNT_BE\\SharedClassLibrary\\SharedClassLibrary.csproj",
         "projectName": "SharedClassLibrary",
-        "projectPath": "C:\\diskD\\code\\PROJECT\\EDUHUNT\\BE\\EDUHUNT_BE\\SharedClassLibrary\\SharedClassLibrary.csproj",
-        "packagesPath": "C:\\Users\\anqua\\.nuget\\packages\\",
-        "outputPath": "C:\\diskD\\code\\PROJECT\\EDUHUNT\\BE\\EDUHUNT_BE\\SharedClassLibrary\\obj\\",
+        "projectPath": "D:\\.NET\\Project\\EDUHUNT_BE\\SharedClassLibrary\\SharedClassLibrary.csproj",
+        "packagesPath": "C:\\Users\\Admin\\.nuget\\packages\\",
+        "outputPath": "D:\\.NET\\Project\\EDUHUNT_BE\\SharedClassLibrary\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\anqua\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -34,6 +34,9 @@
           "warnAsError": [
             "NU1605"
           ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "default"
         }
       },
       "frameworks": {

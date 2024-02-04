@@ -1,6 +1,7 @@
 ﻿using EDUHUNT_BE.Model;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using SharedClassLibrary.DTOs;
 
 namespace EDUHUNT_BE.Data
 {
@@ -13,6 +14,7 @@ namespace EDUHUNT_BE.Data
         public DbSet<ScholarshipInfo> ScholarshipInfos { get; set; }
         public DbSet<Message> Messages { get; set; }
         public DbSet<QA> QAs { get; set; }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
@@ -46,9 +48,9 @@ namespace EDUHUNT_BE.Data
             {
                 entity.HasKey(e => e.Id);
                 entity.Property(e => e.AskerId).IsRequired();
-                entity.Property(e => e.AnswerId).IsRequired();
+                entity.Property(e => e.AnswerId).IsRequired(false);
                 entity.Property(e => e.Question).HasMaxLength(255).IsRequired();
-                entity.Property(e => e.Answer).HasMaxLength(255).IsRequired();
+                entity.Property(e => e.Answer).HasMaxLength(255).IsRequired(false);
                 entity.Property(e => e.CreatedAt).IsRequired();
 
                 // Additional configurations for QA entity can be added here if needed
