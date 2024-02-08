@@ -1,4 +1,5 @@
 ﻿using EDUHUNT_BE.Data;
+using EDUHUNT_BE.Model;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.IdentityModel.Tokens;
 using SharedClassLibrary.Contracts;
@@ -10,12 +11,28 @@ using static SharedClassLibrary.DTOs.ServiceResponses;
 
 namespace EDUHUNT_BE.Repositories
 {
-    public class AccountRepository(
-        UserManager<ApplicationUser> userManager,
-        RoleManager<IdentityRole> roleManager,
-        IConfiguration config
-        ) : IUserAccount
+    public class AccountRepository : IUserAccount
     {
+        private readonly UserManager<ApplicationUser> userManager;
+        private readonly RoleManager<IdentityRole> roleManager;
+        private readonly IConfiguration config;
+        private readonly AppDbContext _context; // Inject the AppDbContext
+
+        public AccountRepository(
+            UserManager<ApplicationUser> userManager,
+            RoleManager<IdentityRole> roleManager,
+            IConfiguration config,
+            AppDbContext context) // Inject the AppDbContext through the constructor
+        {
+            this.userManager = userManager;
+            this.roleManager = roleManager;
+            this.config = config;
+            _context = context; // Assign the injected AppDbContext to the private field
+        }
+
+
+
+
         public async Task<GeneralResponse> CreateAccount(UserDTO userDTO)
         {
             if (userDTO is null) return new GeneralResponse(false, "Model is empty");
@@ -43,6 +60,14 @@ namespace EDUHUNT_BE.Repositories
                 return new GeneralResponse(false, errorMessage);
             }
 
+            var profile = new Profile
+            {
+                UserId = Guid.Parse(newUser.Id),
+                // Assign other properties as needed
+            };
+
+            _context.Profile.Add(profile);
+            await _context.SaveChangesAsync();
             //Assign Default Role : Admin to first registrar; rest is user
             var checkAdmin = await roleManager.FindByNameAsync("Admin");
             if (checkAdmin is null)
@@ -60,6 +85,13 @@ namespace EDUHUNT_BE.Repositories
                 await userManager.AddToRoleAsync(newUser, "User");
                 return new GeneralResponse(true, "Account Created");
             }
+
+
+          
+
+
+
+
         }
 
         public async Task<LoginResponse> LoginAccount(LoginDTO loginDTO)
