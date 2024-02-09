@@ -1,4 +1,5 @@
 ﻿using EDUHUNT_BE.Data;
+using EDUHUNT_BE.Model;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.IdentityModel.Tokens;
 using SharedClassLibrary.Contracts;
@@ -11,6 +12,28 @@ using static SharedClassLibrary.DTOs.ServiceResponses;
 
 namespace EDUHUNT_BE.Repositories
 {
+    public class AccountRepository : IUserAccount
+    {
+        private readonly UserManager<ApplicationUser> userManager;
+        private readonly RoleManager<IdentityRole> roleManager;
+        private readonly IConfiguration config;
+        private readonly AppDbContext _context; // Inject the AppDbContext
+
+        public AccountRepository(
+            UserManager<ApplicationUser> userManager,
+            RoleManager<IdentityRole> roleManager,
+            IConfiguration config,
+            AppDbContext context) // Inject the AppDbContext through the constructor
+        {
+            this.userManager = userManager;
+            this.roleManager = roleManager;
+            this.config = config;
+            _context = context; // Assign the injected AppDbContext to the private field
+        }
+
+
+
+
     public class AccountRepository(
         UserManager<ApplicationUser> userManager,
         RoleManager<IdentityRole> roleManager,
@@ -76,6 +99,13 @@ namespace EDUHUNT_BE.Repositories
             {
                 await userManager.AddToRoleAsync(user, roleName);
             }
+
+
+          
+
+
+
+
         }
 
         public async Task<LoginResponse> LoginAccount(LoginDTO loginDTO)

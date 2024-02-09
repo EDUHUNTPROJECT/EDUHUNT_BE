@@ -1147,11 +1147,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\.NET\\Project\\EDUHUNT_BE\\SharedClassLibrary\\SharedClassLibrary.csproj",
+      "projectUniqueName": "D:\\WEB\\EDUHUNT_BE\\SharedClassLibrary\\SharedClassLibrary.csproj",
       "projectName": "SharedClassLibrary",
-      "projectPath": "D:\\.NET\\Project\\EDUHUNT_BE\\SharedClassLibrary\\SharedClassLibrary.csproj",
+      "projectPath": "D:\\WEB\\EDUHUNT_BE\\SharedClassLibrary\\SharedClassLibrary.csproj",
       "packagesPath": "C:\\Users\\Admin\\.nuget\\packages\\",
-      "outputPath": "D:\\.NET\\Project\\EDUHUNT_BE\\SharedClassLibrary\\obj\\",
+      "outputPath": "D:\\WEB\\EDUHUNT_BE\\SharedClassLibrary\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Admin\\AppData\\Roaming\\NuGet\\NuGet.Config",

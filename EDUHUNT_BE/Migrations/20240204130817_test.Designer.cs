@@ -12,12 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EDUHUNT_BE.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-<<<<<<<< HEAD:EDUHUNT_BE/Migrations/20240201171059_v1.Designer.cs
-    [Migration("20240201171059_v1")]
-========
-    [Migration("20240203011451_v1")]
->>>>>>>> main:EDUHUNT_BE/Migrations/20240203011451_v1.Designer.cs
-    partial class v1
+    [Migration("20240204130817_test")]
+    partial class test
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -125,8 +121,6 @@ namespace EDUHUNT_BE.Migrations
                     b.ToTable("Messages");
                 });
 
-<<<<<<<< HEAD:EDUHUNT_BE/Migrations/20240201171059_v1.Designer.cs
-========
             modelBuilder.Entity("EDUHUNT_BE.Model.Profile", b =>
                 {
                     b.Property<Guid>("Id")
@@ -168,7 +162,6 @@ namespace EDUHUNT_BE.Migrations
                     b.ToTable("Profile");
                 });
 
->>>>>>>> main:EDUHUNT_BE/Migrations/20240203011451_v1.Designer.cs
             modelBuilder.Entity("EDUHUNT_BE.Model.QA", b =>
                 {
                     b.Property<Guid>("Id")
@@ -176,18 +169,11 @@ namespace EDUHUNT_BE.Migrations
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Answer")
-<<<<<<<< HEAD:EDUHUNT_BE/Migrations/20240201171059_v1.Designer.cs
-                        .HasMaxLength(255)
-                        .HasColumnType("nvarchar(255)");
-
-                    b.Property<Guid?>("AnswerId")
-========
                         .IsRequired()
                         .HasMaxLength(255)
                         .HasColumnType("nvarchar(255)");
 
                     b.Property<Guid>("AnswerId")
->>>>>>>> main:EDUHUNT_BE/Migrations/20240203011451_v1.Designer.cs
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid>("AskerId")

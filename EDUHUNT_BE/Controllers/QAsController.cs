@@ -84,6 +84,59 @@ namespace EDUHUNT_BE.Controllers
 
             var user = await _userManager.FindByIdAsync(userId.ToString());
 
+        // GET: api/QAs/GetAllUserOrMentor/{id}
+        [HttpGet("GetAllUserOrMentor/{id}")]
+        public async Task<ActionResult<IEnumerable<ApplicationUser>>> GetUsersOrMentors(Guid id)
+        {
+            try
+            {
+                // Retrieve the user by ID
+                var user = await _userManager.FindByIdAsync(id.ToString());
+
+                if (user == null)
+                {
+                    return NotFound();
+                }
+
+                // Retrieve roles directly without using IsInRoleAsync
+                var userRoles = await _userManager.GetRolesAsync(user);
+
+                if (userRoles.Contains("User"))
+                {
+                    // Retrieve mentors if the user has the "User" role
+                    var mentors = await _userManager.GetUsersInRoleAsync("Mentor");
+                    return Ok(mentors);
+                }
+                else if (userRoles.Contains("Mentor"))
+                {
+                    // Retrieve users if the user has the "Mentor" role
+                    var users = await _userManager.GetUsersInRoleAsync("User");
+                    return Ok(users);
+                }
+                else
+                {
+                    return BadRequest("Invalid role for the specified user");
+                }
+            }
+            catch (Exception ex)
+            {
+                // Log the exception for debugging
+                Console.WriteLine($"Exception: {ex.Message}");
+                return StatusCode(500, "Internal server error");
+            }
+        }
+
+        // GET: api/QAs/Conversations/{id}
+        [HttpGet("Conversations/{id}")]
+        public async Task<ActionResult<IEnumerable<QA>>> GetConversations(string id)
+        {
+            if (!Guid.TryParse(id, out Guid userId))
+            {
+                return BadRequest("Invalid user ID format");
+            }
+
+            var user = await _userManager.FindByIdAsync(userId.ToString());
+
             if (user == null)
             {
                 return NotFound();

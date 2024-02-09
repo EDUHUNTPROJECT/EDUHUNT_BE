@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\.NET\\Project\\EDUHUNT_BE\\EDUHUNT_BE\\EDUHUNT_BE.csproj": {}
+    "D:\\WEB\\EDUHUNT_BE\\EDUHUNT_BE\\EDUHUNT_BE.csproj": {}
   },
   "projects": {
-    "D:\\.NET\\Project\\EDUHUNT_BE\\EDUHUNT_BE\\EDUHUNT_BE.csproj": {
+    "D:\\WEB\\EDUHUNT_BE\\EDUHUNT_BE\\EDUHUNT_BE.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\.NET\\Project\\EDUHUNT_BE\\EDUHUNT_BE\\EDUHUNT_BE.csproj",
+        "projectUniqueName": "D:\\WEB\\EDUHUNT_BE\\EDUHUNT_BE\\EDUHUNT_BE.csproj",
         "projectName": "EDUHUNT_BE",
-        "projectPath": "D:\\.NET\\Project\\EDUHUNT_BE\\EDUHUNT_BE\\EDUHUNT_BE.csproj",
+        "projectPath": "D:\\WEB\\EDUHUNT_BE\\EDUHUNT_BE\\EDUHUNT_BE.csproj",
         "packagesPath": "C:\\Users\\Admin\\.nuget\\packages\\",
-        "outputPath": "D:\\.NET\\Project\\EDUHUNT_BE\\EDUHUNT_BE\\obj\\",
+        "outputPath": "D:\\WEB\\EDUHUNT_BE\\EDUHUNT_BE\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -28,8 +28,8 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "D:\\.NET\\Project\\EDUHUNT_BE\\SharedClassLibrary\\SharedClassLibrary.csproj": {
-                "projectPath": "D:\\.NET\\Project\\EDUHUNT_BE\\SharedClassLibrary\\SharedClassLibrary.csproj"
+              "D:\\WEB\\EDUHUNT_BE\\SharedClassLibrary\\SharedClassLibrary.csproj": {
+                "projectPath": "D:\\WEB\\EDUHUNT_BE\\SharedClassLibrary\\SharedClassLibrary.csproj"
               }
             }
           }
@@ -133,14 +133,14 @@
         }
       }
     },
-    "D:\\.NET\\Project\\EDUHUNT_BE\\SharedClassLibrary\\SharedClassLibrary.csproj": {
+    "D:\\WEB\\EDUHUNT_BE\\SharedClassLibrary\\SharedClassLibrary.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\.NET\\Project\\EDUHUNT_BE\\SharedClassLibrary\\SharedClassLibrary.csproj",
+        "projectUniqueName": "D:\\WEB\\EDUHUNT_BE\\SharedClassLibrary\\SharedClassLibrary.csproj",
         "projectName": "SharedClassLibrary",
-        "projectPath": "D:\\.NET\\Project\\EDUHUNT_BE\\SharedClassLibrary\\SharedClassLibrary.csproj",
+        "projectPath": "D:\\WEB\\EDUHUNT_BE\\SharedClassLibrary\\SharedClassLibrary.csproj",
         "packagesPath": "C:\\Users\\Admin\\.nuget\\packages\\",
-        "outputPath": "D:\\.NET\\Project\\EDUHUNT_BE\\SharedClassLibrary\\obj\\",
+        "outputPath": "D:\\WEB\\EDUHUNT_BE\\SharedClassLibrary\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
