@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using EDUHUNT_BE.Data;
 using EDUHUNT_BE.Model;
+using Microsoft.AspNetCore.Identity;
 
 namespace EDUHUNT_BE.Controllers
 {
