@@ -9,13 +9,15 @@ namespace SharedClassLibrary.DTOs
         public string? Title { get; set; } = string.Empty;
 
         [Required]
-        public int? Budget { get; set; } = 0;
+        public string? Budget { get; set; } = string.Empty;
 
         [Required]
         public string? Location { get; set; } = string.Empty;
 
         [Required]
         public string? School_name { get; set; } = string.Empty;
+        [Required]
+        public string? Level { get; set; } = string.Empty;
 
         [Required]
         public string? Url { get; set; } = string.Empty; // Add this property for the URL

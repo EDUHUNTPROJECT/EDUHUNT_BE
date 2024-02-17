@@ -1,4 +1,5 @@
 ﻿using EDUHUNT_BE.Data;
+using EDUHUNT_BE.Model;
 using Microsoft.AspNetCore.Mvc;
 using SharedClassLibrary.Contracts;
 using SharedClassLibrary.DTOs;
@@ -11,11 +12,11 @@ namespace EDUHUNT_BE.Controllers
 
     {
         private readonly AppDbContext _context;
-
         private readonly IScholarship _scholarshipRepository;
 
-        public ScholarshipController(IScholarship scholarshipRepository)
+        public ScholarshipController(AppDbContext context, IScholarship scholarshipRepository)
         {
+            _context = context;
             _scholarshipRepository = scholarshipRepository;
         }
 
@@ -26,8 +27,27 @@ namespace EDUHUNT_BE.Controllers
             {
                 var scholarships = await _scholarshipRepository.GetScholarships();
 
+                foreach (ScholarshipDTO scholarshipDTO in scholarships)
+                {
+                    var newScholarshipInfo = new ScholarshipInfo
+                    {
+                        // Assuming Id in DTO is not needed as it's a new Guid generated in ScholarshipInfo
+                        Title = scholarshipDTO.Title,
+                        Location = scholarshipDTO.Location,
+                        SchoolName = scholarshipDTO.School_name,
+                        Url = scholarshipDTO.Url,
+                        // Convert Budget from string to decimal. Assuming the string is always a valid decimal format.
+                        Budget = scholarshipDTO.Budget,
+                        // Default values for fields not present in DTO
+                        CategoryId = 0, // Assuming a default value, adjust as necessary
+                        AuthorId = 0, // Assuming a default value, adjust as necessary
+                        IsInSite = false, // Assuming a default value, adjust as necessary
+                                          // CreatedAt is set by default in the model
+                    };
+                    _context.ScholarshipInfos.Add(newScholarshipInfo);
+                }
 
-
+                await _context.SaveChangesAsync();
 
                 return Ok(scholarships);
             }

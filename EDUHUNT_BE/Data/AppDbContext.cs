@@ -23,7 +23,7 @@ namespace EDUHUNT_BE.Data
             modelBuilder.Entity<ScholarshipInfo>(entity =>
             {
                 entity.HasKey(e => e.Id);
-                entity.Property(e => e.Budget).HasColumnType("DECIMAL(19,4)");
+                entity.Property(e => e.Budget).HasMaxLength(255).IsRequired(false);
                 entity.Property(e => e.Title).HasMaxLength(255).IsRequired();
                 entity.Property(e => e.Location).HasMaxLength(255).IsRequired(false);
                 entity.Property(e => e.SchoolName).HasMaxLength(255).IsRequired(false);
