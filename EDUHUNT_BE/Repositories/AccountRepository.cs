@@ -143,15 +143,26 @@ namespace EDUHUNT_BE.Repositories
         public async Task<List<ListUserDTO>> ListUser()
         {
             var users = await userManager.Users.ToListAsync();
-            var userDTOs = await Task.WhenAll(users.Select(async u => new ListUserDTO
+            var userDTOs = new List<ListUserDTO>();
+
+            foreach (var user in users)
             {
-                Id = u.Id,
-                Name = u.Name,
-                Email = u.Email,
-                Role = (List<string>)await userManager.GetRolesAsync(u)
-            }));
-            return userDTOs.ToList();
+                var roles = await userManager.GetRolesAsync(user);
+
+                var userDTO = new ListUserDTO
+                {
+                    Id = user.Id,
+                    Name = user.Name,
+                    Email = user.Email,
+                    Role = roles.ToList()
+                };
+
+                userDTOs.Add(userDTO);
+            }
+
+            return userDTOs;
         }
+
 
 
         public async Task<DeleteUserResponse> DeleteUser(string id)

@@ -40,11 +40,12 @@ namespace EDUHUNT_BE.Controllers
         }
 
 
-        [HttpDelete("deleteuser")]
-        public async Task<IActionResult> DeleteUser(string id)
+        [HttpDelete("deleteuser/{id}")]
+        public async Task<IActionResult> DeleteUser([FromRoute] string id)
         {
             var response = await userAccount.DeleteUser(id);
             return Ok(response);
         }
+
     }
 }
