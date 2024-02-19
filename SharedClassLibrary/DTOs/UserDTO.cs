@@ -21,7 +21,7 @@ namespace SharedClassLibrary.DTOs
         [DataType(DataType.Password)]
         [Compare(nameof(Password))]
         public string ConfirmPassword { get; set; } = string.Empty;
-
+        public int RoleId { get; set; }
     }
 
 }
