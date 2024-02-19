@@ -60,38 +60,37 @@ namespace EDUHUNT_BE.Repositories
                 return new GeneralResponse(false, errorMessage);
             }
 
-            var profile = new Profile
+            //Assign Default Role : 1: User, 2: Scholarship Provider, 3: Mentor 
+            switch (userDTO.RoleId)
             {
-                UserId = Guid.Parse(newUser.Id),
-                // Assign other properties as needed
-            };
+                case 1:
+                    await AssignRole(newUser, "User");
+                    break;
+                case 2:
+                    await AssignRole(newUser, "Scholarship Provider");
+                    break;
+                case 3:
+                    await AssignRole(newUser, "Mentor");
+                    break;
+                default:
+                    await AssignRole(newUser, "Admin");
+                    break;
+            }
+            return new GeneralResponse(true, "Account Created");
+        }
 
-            _context.Profile.Add(profile);
-            await _context.SaveChangesAsync();
-            //Assign Default Role : Admin to first registrar; rest is user
-            var checkAdmin = await roleManager.FindByNameAsync("Admin");
-            if (checkAdmin is null)
+        private async Task AssignRole(ApplicationUser user, string roleName)
+        {
+            var role = await roleManager.FindByNameAsync(roleName);
+            if (role is null)
             {
-                await roleManager.CreateAsync(new IdentityRole() { Name = "Admin" });
-                await userManager.AddToRoleAsync(newUser, "Admin");
-                return new GeneralResponse(true, "Account Created");
+                await roleManager.CreateAsync(new IdentityRole() { Name = roleName });
+                await userManager.AddToRoleAsync(user, roleName);
             }
             else
             {
-                var checkUser = await roleManager.FindByNameAsync("User");
-                if (checkUser is null)
-                    await roleManager.CreateAsync(new IdentityRole() { Name = "User" });
-
-                await userManager.AddToRoleAsync(newUser, "User");
-                return new GeneralResponse(true, "Account Created");
+                await userManager.AddToRoleAsync(user, roleName);
             }
-
-
-          
-
-
-
-
         }
 
         public async Task<LoginResponse> LoginAccount(LoginDTO loginDTO)
