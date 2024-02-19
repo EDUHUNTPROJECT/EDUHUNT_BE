@@ -28,5 +28,23 @@ namespace EDUHUNT_BE.Controllers
             var response = await userAccount.LogoutAccount();
             return Ok(response);
         }
+
+
+
+
+        [HttpGet("listuser")]
+        public async Task<IActionResult> ListUser()
+        {
+            var response = await userAccount.ListUser();
+            return Ok(response);
+        }
+
+
+        [HttpDelete("deleteuser")]
+        public async Task<IActionResult> DeleteUser(string id)
+        {
+            var response = await userAccount.DeleteUser(id);
+            return Ok(response);
+        }
     }
 }

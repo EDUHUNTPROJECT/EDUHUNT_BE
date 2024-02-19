@@ -8,5 +8,11 @@ namespace SharedClassLibrary.Contracts
         Task<GeneralResponse> CreateAccount(UserDTO userDTO);
         Task<LoginResponse> LoginAccount(LoginDTO loginDTO);
         Task<LoginResponse> LogoutAccount();
+
+        Task<List<ListUserDTO>> ListUser();
+
+        Task<DeleteUserResponse> DeleteUser(string id);
+
+
     }
 }
