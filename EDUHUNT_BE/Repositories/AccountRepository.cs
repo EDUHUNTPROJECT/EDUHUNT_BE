@@ -157,8 +157,6 @@ namespace EDUHUNT_BE.Repositories
                 );
             return new JwtSecurityTokenHandler().WriteToken(token);
         }
-<<<<<<< HEAD
-=======
 
 
         public async Task<List<ListUserDTO>> ListUser()
@@ -199,8 +197,5 @@ namespace EDUHUNT_BE.Repositories
             }
             return new DeleteUserResponse(true, "User deleted");
         }
-     
-
->>>>>>> 6a890beefc76033d88314b825da313a762574488
     }
 }
