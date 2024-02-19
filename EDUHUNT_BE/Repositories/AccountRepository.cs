@@ -94,6 +94,25 @@ namespace EDUHUNT_BE.Repositories
             }
         }
 
+        public async Task<GeneralResponse> ChangePassword(string userId, string currentPassword, string newPassword)
+        {
+            if (string.IsNullOrWhiteSpace(userId) || string.IsNullOrWhiteSpace(currentPassword) || string.IsNullOrWhiteSpace(newPassword))
+                return new GeneralResponse(false, "Invalid parameters");
+
+            var user = await userManager.FindByIdAsync(userId);
+            if (user == null)
+                return new GeneralResponse(false, "User not found");
+
+            var result = await userManager.ChangePasswordAsync(user, currentPassword, newPassword);
+            if (!result.Succeeded)
+            {
+                var errors = result.Errors.Select(e => e.Description);
+                var errorMessage = string.Join(", ", errors);
+                return new GeneralResponse(false, errorMessage);
+            }
+            return new GeneralResponse(true, "Password changed successfully");
+        }
+
         public async Task<LoginResponse> LoginAccount(LoginDTO loginDTO)
         {
             if (loginDTO == null)
@@ -138,6 +157,8 @@ namespace EDUHUNT_BE.Repositories
                 );
             return new JwtSecurityTokenHandler().WriteToken(token);
         }
+<<<<<<< HEAD
+=======
 
 
         public async Task<List<ListUserDTO>> ListUser()
@@ -180,5 +201,6 @@ namespace EDUHUNT_BE.Repositories
         }
      
 
+>>>>>>> 6a890beefc76033d88314b825da313a762574488
     }
 }
