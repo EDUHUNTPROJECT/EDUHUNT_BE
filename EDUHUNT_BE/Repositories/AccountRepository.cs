@@ -1,6 +1,7 @@
 ﻿using EDUHUNT_BE.Data;
 using EDUHUNT_BE.Model;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using SharedClassLibrary.Contracts;
 using SharedClassLibrary.DTOs;
@@ -156,5 +157,39 @@ namespace EDUHUNT_BE.Repositories
                 );
             return new JwtSecurityTokenHandler().WriteToken(token);
         }
+<<<<<<< HEAD
+=======
+
+
+        public async Task<List<ListUserDTO>> ListUser()
+        {
+            var users = await userManager.Users.ToListAsync();
+            var userDTOs = await Task.WhenAll(users.Select(async u => new ListUserDTO
+            {
+                Id = u.Id,
+                Name = u.Name,
+                Email = u.Email,
+                Role = (List<string>)await userManager.GetRolesAsync(u)
+            }));
+            return userDTOs.ToList();
+        }
+
+
+        public async Task<DeleteUserResponse> DeleteUser(string id)
+        {
+            var user = await userManager.FindByIdAsync(id);
+            if (user is null) return new DeleteUserResponse(false, "User not found");
+            var deleteUser = await userManager.DeleteAsync(user);
+            if (!deleteUser.Succeeded)
+            {
+                var errors = deleteUser.Errors.Select(e => e.Description);
+                var errorMessage = string.Join(", ", errors);
+                return new DeleteUserResponse(false, errorMessage);
+            }
+            return new DeleteUserResponse(true, "User deleted");
+        }
+     
+
+>>>>>>> 6a890beefc76033d88314b825da313a762574488
     }
 }

@@ -9,5 +9,11 @@ namespace SharedClassLibrary.Contracts
         Task<GeneralResponse> ChangePassword(string userId, string currentPassword, string newPassword);
         Task<LoginResponse> LoginAccount(LoginDTO loginDTO);
         Task<LoginResponse> LogoutAccount();
+
+        Task<List<ListUserDTO>> ListUser();
+
+        Task<DeleteUserResponse> DeleteUser(string id);
+
+
     }
 }
