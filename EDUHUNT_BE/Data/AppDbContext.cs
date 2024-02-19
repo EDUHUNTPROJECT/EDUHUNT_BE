@@ -13,9 +13,9 @@ namespace EDUHUNT_BE.Data
         public DbSet<ScholarshipInfo> ScholarshipInfos { get; set; }
         public DbSet<Message> Messages { get; set; }
         public DbSet<QA> QAs { get; set; }
-
-
         public DbSet<Profile> Profile { get; set; }
+        public DbSet<CV> CVs { get; set; }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
@@ -74,6 +74,15 @@ namespace EDUHUNT_BE.Data
                 entity.Property(e=> e.UrlAvatar).IsRequired(false);
                 // Additional configurations for the Profile entity can be added here if needed
             });
+
+            modelBuilder.Entity<CV>(entity =>
+            {
+                entity.HasKey(e => e.Id);
+                entity.Property(e => e.UserId).IsRequired();
+                entity.Property(e => e.UrlCV).IsRequired();
+                // Additional configurations for the Profile entity can be added here if needed
+            });
+
             // Additional configurations for other entities can be added here if needed
         }
     }

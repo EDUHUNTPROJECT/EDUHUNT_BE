@@ -127,6 +127,69 @@ namespace EDUHUNT_BE.Controllers
             return CreatedAtAction("GetProfile", new { id = profile.Id }, profile);
         }
 
+        // POST: api/Profiles/UploadCV
+        [HttpPost("UploadCV")]
+        public async Task<ActionResult<CV>> UploadCV(Guid userId, string urlCV = null)
+        {
+            var cv = await _context.CVs.FirstOrDefaultAsync(c => c.UserId == userId);
+
+            if (string.IsNullOrWhiteSpace(urlCV))
+            {
+                if (cv == null)
+                {
+                    return NotFound("No CV found for the user");
+                }
+                else
+                {
+                    return Ok(cv);
+                }
+            }
+            else
+            {
+                if (cv == null)
+                {
+                    var newCv = new CV
+                    {
+                        UserId = userId,
+                        UrlCV = urlCV
+                    };
+
+                    _context.CVs.Add(newCv);
+                    await _context.SaveChangesAsync();
+
+                    return CreatedAtAction("GetCV", new { id = newCv.Id }, newCv);
+                }
+                else
+                {
+                    cv.UrlCV = urlCV;
+                    _context.Entry(cv).State = EntityState.Modified;
+
+                    try
+                    {
+                        await _context.SaveChangesAsync();
+                    }
+                    catch (DbUpdateConcurrencyException)
+                    {
+                        if (!CVExists(cv.Id))
+                        {
+                            return NotFound();
+                        }
+                        else
+                        {
+                            throw;
+                        }
+                    }
+
+                    return NoContent();
+                }
+            }
+        }
+
+        private bool CVExists(Guid id)
+        {
+            return _context.CVs.Any(e => e.Id == id);
+        }
+
         // DELETE: api/Profiles/5
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteProfile(Guid id)

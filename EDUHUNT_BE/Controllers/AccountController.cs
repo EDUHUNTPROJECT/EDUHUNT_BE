@@ -22,6 +22,13 @@ namespace EDUHUNT_BE.Controllers
             return Ok(response);
         }
 
+        [HttpPost("changePassword")]
+        public async Task<IActionResult> ChangePassword(string userId, string currentPassword, string newPassword)
+        {
+            var response = await userAccount.ChangePassword(userId, currentPassword, newPassword);
+            return Ok(response);
+        }
+
         [HttpPost("logout")]
         public async Task<IActionResult> Logout()
         {
