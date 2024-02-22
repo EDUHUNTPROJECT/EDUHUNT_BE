@@ -127,13 +127,13 @@ namespace EDUHUNT_BE.Controllers
             return CreatedAtAction("GetProfile", new { id = profile.Id }, profile);
         }
 
-        // POST: api/Profiles/UploadCV
+        // POST: api/UploadCV
         [HttpPost("UploadCV")]
-        public async Task<ActionResult<CV>> UploadCV(Guid userId, string urlCV = null)
+        public async Task<ActionResult<CV>> UploadCV(CV cV)
         {
-            var cv = await _context.CVs.FirstOrDefaultAsync(c => c.UserId == userId);
+            var cv = await _context.CVs.FirstOrDefaultAsync(c => c.UserId == cV.UserId);
 
-            if (string.IsNullOrWhiteSpace(urlCV))
+            if (string.IsNullOrWhiteSpace(cV.UrlCV))
             {
                 if (cv == null)
                 {
@@ -150,8 +150,8 @@ namespace EDUHUNT_BE.Controllers
                 {
                     var newCv = new CV
                     {
-                        UserId = userId,
-                        UrlCV = urlCV
+                        UserId = cV.UserId,
+                        UrlCV = cV.UrlCV
                     };
 
                     _context.CVs.Add(newCv);
@@ -161,7 +161,7 @@ namespace EDUHUNT_BE.Controllers
                 }
                 else
                 {
-                    cv.UrlCV = urlCV;
+                    cv.UrlCV = cV.UrlCV;
                     _context.Entry(cv).State = EntityState.Modified;
 
                     try
