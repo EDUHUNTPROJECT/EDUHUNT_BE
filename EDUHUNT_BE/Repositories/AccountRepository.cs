@@ -147,7 +147,11 @@ namespace EDUHUNT_BE.Repositories
             var getUserRole = await userManager.GetRolesAsync(getUser);
             var userSession = new UserSession(getUser.Id, getUser.Name, getUser.Email, getUserRole.First());
             string token = GenerateToken(userSession);
-            return new LoginResponse(true, token!, getUser.Id, "Login completed");
+
+            var  iduuid= Guid.Parse(getUser.Id);
+            var profile = await _context.Profile.FirstOrDefaultAsync(Profile => Profile.UserId == iduuid);
+
+            return new LoginResponse(true, token!, getUser.Id,  "Login completed");
         }
 
         public Task<LoginResponse> LogoutAccount()
@@ -185,11 +189,12 @@ namespace EDUHUNT_BE.Repositories
             foreach (var user in users)
             {
                 var roles = await userManager.GetRolesAsync(user);
-
+                var iduuid = Guid.Parse(user.Id);
+                var profile = await _context.Profile.FirstOrDefaultAsync(Profile => Profile.UserId == iduuid);
                 var userDTO = new ListUserDTO
                 {
                     Id = user.Id,
-                    Name = user.Name,
+                    Name = profile.UserName,
                     Email = user.Email,
                     Role = roles.ToList()
                 };
