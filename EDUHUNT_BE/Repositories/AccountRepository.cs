@@ -77,6 +77,24 @@ namespace EDUHUNT_BE.Repositories
                     await AssignRole(newUser, "Admin");
                     break;
             }
+            try
+            {
+                var profile = new Profile
+                {
+                    UserId = Guid.Parse(newUser.Id),
+                    // Assign other properties as needed
+                };
+
+                _context.Profile.Add(profile);
+                await _context.SaveChangesAsync();
+            }
+            catch (Exception ex)
+            {
+                // Handle the exception here
+                // You can log the exception or perform any other necessary actions
+                // For example, you can throw a custom exception or return an error response
+                throw new Exception("An error occurred while saving the profile.", ex);
+            }
             return new GeneralResponse(true, "Account Created");
         }
 
