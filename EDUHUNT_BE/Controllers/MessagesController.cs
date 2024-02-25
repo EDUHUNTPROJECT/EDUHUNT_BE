@@ -106,7 +106,7 @@ namespace EDUHUNT_BE.Controllers
         }
 
         // GET: api/Messages/user/id
-        [HttpGet("user")]
+        [HttpGet("user/{senderId}/{receiverId}")]
         public async Task<ActionResult<IEnumerable<Message>>> GetMessagesByUserId(Guid senderId, Guid receiverId)
         {
             string sender = senderId.ToString();
