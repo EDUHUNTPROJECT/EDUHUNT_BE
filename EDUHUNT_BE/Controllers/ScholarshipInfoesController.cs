@@ -78,6 +78,7 @@ namespace EDUHUNT_BE.Controllers
         [HttpPost]
         public async Task<ActionResult<ScholarshipInfo>> PostScholarshipInfo(ScholarshipInfo scholarshipInfo)
         {
+            scholarshipInfo.Id = Guid.NewGuid();
             _context.ScholarshipInfos.Add(scholarshipInfo);
             await _context.SaveChangesAsync();
 

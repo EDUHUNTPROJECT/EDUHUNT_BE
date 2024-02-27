@@ -1,16 +1,32 @@
-﻿namespace EDUHUNT_BE.Model
+﻿using System;
+using System.ComponentModel.DataAnnotations;
+
+namespace EDUHUNT_BE.Model
 {
     public class ScholarshipInfo
     {
-        public Guid Id { get; set; } = Guid.NewGuid();
+        public Guid? Id { get; set; }
+
+        [Required]
         public string Budget { get; set; }
+
+        [Required]
         public string Title { get; set; }
+
+        [Required]
         public string Location { get; set; }
+
+        [Required]
         public string SchoolName { get; set; }
-        public int CategoryId { get; set; }
-        public int AuthorId { get; set; }
-        public bool IsInSite { get; set; }
+
+        public int? CategoryId { get; set; } = 0;
+        public int? AuthorId { get; set; } = 0;
+
+        public bool? IsInSite { get; set; } = false;
+
+        [Required]
         public string Url { get; set; }
+
         public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
     }
 }

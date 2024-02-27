@@ -15,10 +15,24 @@ namespace EDUHUNT_BE.Data
         public DbSet<QA> QAs { get; set; }
         public DbSet<Profile> Profile { get; set; }
         public DbSet<CV> CVs { get; set; }
+        public DbSet<RoadMap> RoadMaps { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
+
+            modelBuilder.Entity<RoadMap>(entity =>
+            {
+                entity.HasKey(e => e.Id);
+                entity.Property(e => e.CreatedAt).IsRequired();
+                entity.Property(e => e.ContentURL).IsRequired(false);
+
+                entity.HasOne<ApplicationUser>()
+                      .WithMany()
+                      .HasForeignKey(e => e.UserId)
+                      .IsRequired()
+                      .OnDelete(DeleteBehavior.Cascade);
+            });
 
             modelBuilder.Entity<ScholarshipInfo>(entity =>
             {
