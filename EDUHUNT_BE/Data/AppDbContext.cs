@@ -18,9 +18,11 @@ namespace EDUHUNT_BE.Data
         public DbSet<RoadMap> RoadMaps { get; set; }
         public DbSet<Certificate> Certificates { get; set; }
 
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
+
 
             modelBuilder.Entity<Certificate>(entity =>
             {

@@ -441,6 +441,7 @@ namespace EDUHUNT_BE.Migrations
                         .IsRequired();
                 });
 
+
             modelBuilder.Entity("EDUHUNT_BE.Model.RoadMap", b =>
                 {
                     b.HasOne("EDUHUNT_BE.Data.ApplicationUser", null)
