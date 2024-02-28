@@ -194,6 +194,24 @@ namespace EDUHUNT_BE.Controllers
             return NoContent();
         }
 
+        // DELETE: api/QAs/Delete/{id}
+        [HttpDelete("Delete")]
+        public async Task<IActionResult> DeleteAllQA()
+        {
+            var qA = await _context.QAs.ToListAsync();
+            if (qA == null)
+            {
+                return NotFound();
+            }
+            foreach(var  item in qA)
+            {
+                _context.QAs.Remove(item);
+            }
+            await _context.SaveChangesAsync();
+
+            return NoContent();
+        }
+
         private bool QAExists(Guid id)
         {
             return _context.QAs.Any(e => e.Id == id);
