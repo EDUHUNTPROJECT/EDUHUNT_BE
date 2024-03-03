@@ -19,8 +19,12 @@ namespace EDUHUNT_BE.Model
         [Required]
         public string SchoolName { get; set; }
 
+        public string Description { get; set; }
+
         public int? CategoryId { get; set; } = 0;
-        public int? AuthorId { get; set; } = 0;
+
+        [Required]
+        public string AuthorId { get; set; }
 
         public bool? IsInSite { get; set; } = false;
 
