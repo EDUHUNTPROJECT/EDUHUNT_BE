@@ -87,7 +87,10 @@ namespace EDUHUNT_BE.Controllers
             {
                 currentProfile.UrlAvatar = profile.UrlAvatar;
             }
-
+            if (currentProfile.IsVIP != profile.IsVIP)
+            {
+                currentProfile.IsVIP = profile.IsVIP;
+            }
             try
             {
 
