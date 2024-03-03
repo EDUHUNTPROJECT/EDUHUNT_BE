@@ -103,6 +103,7 @@ namespace EDUHUNT_BE.Data
                 entity.Property(e => e.Address).IsRequired(false);
                 entity.Property(e => e.Description).IsRequired(false);
                 entity.Property(e=> e.UrlAvatar).IsRequired(false);
+                entity.Property(e => e.IsVIP);
                 // Additional configurations for the Profile entity can be added here if needed
             });
 
