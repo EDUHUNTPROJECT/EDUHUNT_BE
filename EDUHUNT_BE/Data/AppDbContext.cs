@@ -73,10 +73,15 @@ namespace EDUHUNT_BE.Data
                 entity.Property(e => e.Location).HasMaxLength(255).IsRequired(false);
                 entity.Property(e => e.SchoolName).HasMaxLength(255).IsRequired(false);
                 entity.Property(e => e.CategoryId);
-                entity.Property(e => e.AuthorId);
                 entity.Property(e => e.IsInSite);
+                entity.Property(e=>e.Description).HasMaxLength(255).IsRequired(false);
                 entity.Property(e => e.Url).HasMaxLength(255).IsRequired(false);
                 entity.Property(e => e.CreatedAt).IsRequired();
+                entity.HasOne<ApplicationUser>()
+                      .WithMany()
+                      .HasForeignKey(e => e.AuthorId)
+                      .IsRequired()
+                      .OnDelete(DeleteBehavior.Cascade);
 
                 // Additional configurations can be added here based on your requirements
             });
