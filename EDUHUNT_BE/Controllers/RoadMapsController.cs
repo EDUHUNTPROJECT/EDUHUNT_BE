@@ -40,15 +40,20 @@ namespace EDUHUNT_BE.Controllers
             return roadMap;
         }
 
+
         // POST: api/RoadMaps
         [HttpPost]
-        public async Task<ActionResult<RoadMap>> PostRoadMap(RoadMap roadMap)
+        public async Task<ActionResult<List<RoadMap>>> PostRoadMaps(List<RoadMap> roadMaps)
         {
-            roadMap.Id = Guid.NewGuid();
-            _context.RoadMaps.Add(roadMap);
+            foreach (var roadMap in roadMaps)
+            {
+                roadMap.Id = Guid.NewGuid();
+                _context.RoadMaps.Add(roadMap);
+            }
+
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetRoadMap", new { id = roadMap.Id }, roadMap);
+            return CreatedAtAction("GetRoadMap", roadMaps);
         }
 
         // DELETE: api/RoadMaps/5

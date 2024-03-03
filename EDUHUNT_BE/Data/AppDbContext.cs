@@ -17,12 +17,26 @@ namespace EDUHUNT_BE.Data
         public DbSet<CV> CVs { get; set; }
         public DbSet<RoadMap> RoadMaps { get; set; }
         public DbSet<Certificate> Certificates { get; set; }
+        public DbSet<CodeVerify> CodeVerifies { get; set; }
 
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
 
+            modelBuilder.Entity<CodeVerify>(entity =>
+            {
+                entity.HasKey(e => e.Id);
+                entity.Property(e => e.Email).IsRequired();
+                entity.Property(e => e.UserId).IsRequired(false);
+                entity.Property(e => e.Code).IsRequired();
+                entity.Property(e => e.ExpirationTime).IsRequired();
+                entity.HasOne<ApplicationUser>()
+                      .WithMany()
+                      .HasForeignKey(e => e.UserId)
+                      .IsRequired()
+                      .OnDelete(DeleteBehavior.Cascade);
+            });
 
             modelBuilder.Entity<Certificate>(entity =>
             {
