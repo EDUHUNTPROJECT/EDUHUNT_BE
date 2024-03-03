@@ -29,7 +29,8 @@
 		<PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="8.0.1" />
 		<PackageReference Include="MimeKit" Version="4.3.0" />
 		<PackageReference Include="OpenAI" Version="1.10.0" />
-		<PackageReference Include="Selenium.WebDriver" Version="4.18.1" />
+		<PackageReference Include="Selenium.WebDriver" Version="4.16.2" />
+		<PackageReference Include="Stripe.net" Version="43.17.0" />
 		<PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />
 		<PackageReference Include="Swashbuckle.AspNetCore.Filters" Version="8.0.1" />
 		<PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="7.4.0" />

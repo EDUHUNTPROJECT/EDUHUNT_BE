@@ -20,6 +20,8 @@ namespace EDUHUNT_BE.Model
         public string Description { get; set; }
         public string UrlAvatar { get; set; }
 
+        public bool IsVIP { get; set; }
+
     }
 
     
