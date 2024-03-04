@@ -240,6 +240,22 @@ namespace EDUHUNT_BE.Repositories
         {
             var user = await userManager.FindByIdAsync(id);
             if (user is null) return new DeleteUserResponse(false, "User not found");
+
+            // Convert user.Id to Guid since the profile uses Guid for UserId
+            var userIdGuid = Guid.Parse(user.Id);
+
+            // Find the profile associated with the user
+            var profile = await context.Profile.FirstOrDefaultAsync(p => p.UserId == userIdGuid);
+
+            // If a profile exists, remove it
+            if (profile != null)
+            {
+                context.Profile.Remove(profile);
+                // Save changes to the database to reflect the removal of the profile
+                await context.SaveChangesAsync();
+            }
+
+            // Proceed to delete the user
             var deleteUser = await userManager.DeleteAsync(user);
             if (!deleteUser.Succeeded)
             {
@@ -247,7 +263,8 @@ namespace EDUHUNT_BE.Repositories
                 var errorMessage = string.Join(", ", errors);
                 return new DeleteUserResponse(false, errorMessage);
             }
-            return new DeleteUserResponse(true, "User deleted");
+            return new DeleteUserResponse(true, "User and associated profile deleted");
         }
+
     }
 }
