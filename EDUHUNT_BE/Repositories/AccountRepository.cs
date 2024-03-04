@@ -88,6 +88,7 @@ namespace EDUHUNT_BE.Repositories
                 var profile = new Profile
                 {
                     UserId = Guid.Parse(newUser.Id),
+                    UrlAvatar = "https://via.placeholder.com/150"
                     // Assign other properties as needed
                 };
 
