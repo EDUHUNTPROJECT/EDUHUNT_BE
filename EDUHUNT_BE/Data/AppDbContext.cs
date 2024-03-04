@@ -18,11 +18,25 @@ namespace EDUHUNT_BE.Data
         public DbSet<RoadMap> RoadMaps { get; set; }
         public DbSet<Certificate> Certificates { get; set; }
         public DbSet<Application> Applications { get; set; }
+        public DbSet<CodeVerify> CodeVerifies { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
 
+            modelBuilder.Entity<CodeVerify>(entity =>
+            {
+                entity.HasKey(e => e.Id);
+                entity.Property(e => e.Email).IsRequired();
+                entity.Property(e => e.UserId).IsRequired(false);
+                entity.Property(e => e.Code).IsRequired();
+                entity.Property(e => e.ExpirationTime).IsRequired();
+                entity.HasOne<ApplicationUser>()
+                      .WithMany()
+                      .HasForeignKey(e => e.UserId)
+                      .IsRequired()
+                      .OnDelete(DeleteBehavior.Cascade);
+            });
 
             modelBuilder.Entity<Certificate>(entity =>
             {
@@ -76,10 +90,15 @@ namespace EDUHUNT_BE.Data
                 entity.Property(e => e.Location).HasMaxLength(255).IsRequired(false);
                 entity.Property(e => e.SchoolName).HasMaxLength(255).IsRequired(false);
                 entity.Property(e => e.CategoryId);
-                entity.Property(e => e.AuthorId);
                 entity.Property(e => e.IsInSite);
+                entity.Property(e=>e.Description).HasMaxLength(255).IsRequired(false);
                 entity.Property(e => e.Url).HasMaxLength(255).IsRequired(false);
                 entity.Property(e => e.CreatedAt).IsRequired();
+                entity.HasOne<ApplicationUser>()
+                      .WithMany()
+                      .HasForeignKey(e => e.AuthorId)
+                      .IsRequired()
+                      .OnDelete(DeleteBehavior.Cascade);
 
                 // Additional configurations can be added here based on your requirements
             });

@@ -1,13 +1,20 @@
 ﻿using EDUHUNT_BE.Data;
+using EDUHUNT_BE.Helper;
 using EDUHUNT_BE.Model;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.UI.Services;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
+using Microsoft.VisualStudio.Web.CodeGenerators.Mvc.Templates.BlazorIdentity.Pages;
 using SharedClassLibrary.Contracts;
 using SharedClassLibrary.DTOs;
+using System.Data;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
+using System.Security.Policy;
 using System.Text;
+using System.Text.Encodings.Web;
 using static SharedClassLibrary.DTOs.ServiceResponses;
 
 namespace EDUHUNT_BE.Repositories
@@ -17,7 +24,7 @@ namespace EDUHUNT_BE.Repositories
         private readonly UserManager<ApplicationUser> userManager;
         private readonly RoleManager<IdentityRole> roleManager;
         private readonly IConfiguration config;
-        private readonly AppDbContext _context; // Inject the AppDbContext
+        private readonly AppDbContext context;
 
         public AccountRepository(
             UserManager<ApplicationUser> userManager,
@@ -28,11 +35,9 @@ namespace EDUHUNT_BE.Repositories
             this.userManager = userManager;
             this.roleManager = roleManager;
             this.config = config;
-            _context = context; // Assign the injected AppDbContext to the private field
+            this.context = context;
+            // Assign the injected AppDbContext to the private field
         }
-
-
-
 
         public async Task<GeneralResponse> CreateAccount(UserDTO userDTO)
         {
@@ -77,6 +82,7 @@ namespace EDUHUNT_BE.Repositories
                     await AssignRole(newUser, "Admin");
                     break;
             }
+
             try
             {
                 var profile = new Profile
@@ -85,8 +91,8 @@ namespace EDUHUNT_BE.Repositories
                     // Assign other properties as needed
                 };
 
-                _context.Profile.Add(profile);
-                await _context.SaveChangesAsync();
+                context.Profile.Add(profile);
+                await context.SaveChangesAsync();
             }
             catch (Exception ex)
             {
@@ -140,6 +146,9 @@ namespace EDUHUNT_BE.Repositories
             if (getUser is null)
                 return new LoginResponse(false, null!, null!, "User not found");
 
+//            if (!getUser.EmailConfirmed)
+//                return new LoginResponse(false, null!, null!, "Email not confirmed. Please confirm your email before logging in.");
+
             bool checkUserPasswords = await userManager.CheckPasswordAsync(getUser, loginDTO.Password);
             if (!checkUserPasswords)
                 return new LoginResponse(false, null!, null!, "Invalid email/password");
@@ -149,7 +158,7 @@ namespace EDUHUNT_BE.Repositories
             string token = GenerateToken(userSession);
 
             var  iduuid= Guid.Parse(getUser.Id);
-            var profile = await _context.Profile.FirstOrDefaultAsync(Profile => Profile.UserId == iduuid);
+            var profile = await context.Profile.FirstOrDefaultAsync(Profile => Profile.UserId == iduuid);
 
             return new LoginResponse(true, token!, getUser.Id,  "Login completed");
         }
@@ -180,6 +189,27 @@ namespace EDUHUNT_BE.Repositories
             return new JwtSecurityTokenHandler().WriteToken(token);
         }
 
+        public async Task<GeneralResponse> ForgotPassword(string email, string newPassword)
+        {
+            if (string.IsNullOrWhiteSpace(email) || string.IsNullOrWhiteSpace(newPassword))
+                return new GeneralResponse(false, "Invalid parameters");
+
+            var user = await userManager.FindByEmailAsync(email);
+            if (user == null)
+                return new GeneralResponse(false, "User not found");
+
+            var passwordResetToken = await userManager.GeneratePasswordResetTokenAsync(user);
+
+            var result = await userManager.ResetPasswordAsync(user, passwordResetToken, newPassword);
+            if (!result.Succeeded)
+            {
+                var errors = result.Errors.Select(e => e.Description);
+                var errorMessage = string.Join(", ", errors);
+                return new GeneralResponse(false, errorMessage);
+            }
+
+            return new GeneralResponse(true, "Password reset successfully");
+        }
 
         public async Task<List<ListUserDTO>> ListUser()
         {
@@ -190,7 +220,7 @@ namespace EDUHUNT_BE.Repositories
             {
                 var roles = await userManager.GetRolesAsync(user);
                 var iduuid = Guid.Parse(user.Id);
-                var profile = await _context.Profile.FirstOrDefaultAsync(Profile => Profile.UserId == iduuid);
+                var profile = await context.Profile.FirstOrDefaultAsync(Profile => Profile.UserId == iduuid);
                 var userDTO = new ListUserDTO
                 {
                     Id = user.Id,
@@ -204,8 +234,6 @@ namespace EDUHUNT_BE.Repositories
 
             return userDTOs;
         }
-
-
 
         public async Task<DeleteUserResponse> DeleteUser(string id)
         {

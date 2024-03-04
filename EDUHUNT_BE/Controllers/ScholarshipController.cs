@@ -1,6 +1,7 @@
 ﻿using EDUHUNT_BE.Data;
 using EDUHUNT_BE.Model;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.CodeAnalysis.Elfie.Diagnostics;
 using SharedClassLibrary.Contracts;
 using SharedClassLibrary.DTOs;
 
@@ -40,7 +41,7 @@ namespace EDUHUNT_BE.Controllers
                         Budget = scholarshipDTO.Budget,
                         // Default values for fields not present in DTO
                         CategoryId = 0, // Assuming a default value, adjust as necessary
-                        AuthorId = 0, // Assuming a default value, adjust as necessary
+                        AuthorId = "97f02c2d-c2e3-4a76-b12a-b2e23cca53b1", // Assuming a default value, adjust as necessary
                         IsInSite = false, // Assuming a default value, adjust as necessary
                                           // CreatedAt is set by default in the model
                     };

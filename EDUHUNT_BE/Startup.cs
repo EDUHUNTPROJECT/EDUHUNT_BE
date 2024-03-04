@@ -1,10 +1,12 @@
 ﻿using EDUHUNT_BE;
 using EDUHUNT_BE.Data;
+using EDUHUNT_BE.Helper;
 using EDUHUNT_BE.Repositories;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -12,6 +14,7 @@ using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using SharedClassLibrary.Contracts;
 using Swashbuckle.AspNetCore.Filters;
+using System.Net;
 using System.Text;
 
 public class Startup
@@ -25,6 +28,7 @@ public class Startup
 
     public void ConfigureServices(IServiceCollection services)
     {
+          
         services.AddControllers();
         services.AddEndpointsApiExplorer();
 
@@ -33,10 +37,14 @@ public class Startup
                 throw new InvalidOperationException("Connection String is not found"))
         );
 
+
+        services.Configure<IdentityOptions>(opts => opts.SignIn.RequireConfirmedEmail = true);
+
         services.AddIdentity<ApplicationUser, IdentityRole>()
             .AddEntityFrameworkStores<AppDbContext>()
             .AddSignInManager()
-            .AddRoles<IdentityRole>();
+            .AddRoles<IdentityRole>()
+            .AddDefaultTokenProviders();
 
         services.AddSignalR();
         services.AddScoped<IScholarship, ScholarshipRepository>();
