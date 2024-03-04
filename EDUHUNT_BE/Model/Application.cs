@@ -5,7 +5,7 @@
         public Guid Id { get; set; }
         public Guid StudentID { get; set; }
         public Guid ScholarshipID { get; set; }
-
+        
         public string StudentCV { get; set; }
 
         public string Status { get; set; }
