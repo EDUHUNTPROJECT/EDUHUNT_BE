@@ -25,12 +25,10 @@ namespace EDUHUNT_BE.Model
 
         [Required]
         public string AuthorId { get; set; }
-
         public bool? IsInSite { get; set; } = false;
-
-        [Required]
         public string Url { get; set; }
-
         public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
+        public bool IsApproved { get; set; } = false;
+        public string ImageUrl { get; set; }
     }
 }

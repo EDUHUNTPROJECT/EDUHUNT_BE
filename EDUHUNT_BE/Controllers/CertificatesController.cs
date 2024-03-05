@@ -40,6 +40,36 @@ namespace EDUHUNT_BE.Controllers
             return certificate;
         }
 
+        // PUT: api/Certificates/5/approve
+        [HttpPut("{id}/approve")]
+        public async Task<IActionResult> ApproveCertificate(Guid id, [FromBody] bool isApproved)
+        {
+            var certificate = await _context.Certificates.FindAsync(id);
+            if (certificate == null)
+            {
+                return NotFound();
+            }
+
+            if (isApproved)
+            {
+                certificate.IsApproved = true;
+                _context.Entry(certificate).State = EntityState.Modified;
+                var profile = await _context.Profile.FirstOrDefaultAsync(p => p.UserId.ToString() == certificate.UserId);
+                if (profile != null)
+                {
+                    profile.IsAllow = true;
+                    _context.Entry(profile).State = EntityState.Modified;
+                }
+            }
+            else
+            {
+                _context.Certificates.Remove(certificate);
+            }
+            await _context.SaveChangesAsync();
+
+            return NoContent();
+        }
+
         // POST: api/certificates
         [HttpPost]
         public async Task<ActionResult<Certificate>> PostCertificate(Certificate certificate)
