@@ -4,6 +4,7 @@ using EDUHUNT_BE.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EDUHUNT_BE.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240305145602_changerequre")]
+    partial class changerequre
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -96,29 +99,26 @@ namespace EDUHUNT_BE.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<string>("ApplicationReason")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("MeetingURL")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<Guid>("ScholarshipID")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<DateTime?>("ScholarshipProviderAvailableEndDate")
+                    b.Property<DateTime>("ScholarshipProviderAvailableEndDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<DateTime?>("ScholarshipProviderAvailableStartDate")
+                    b.Property<DateTime>("ScholarshipProviderAvailableStartDate")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Status")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime?>("StudentAvailableEndDate")
+                    b.Property<DateTime>("StudentAvailableEndDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<DateTime?>("StudentAvailableStartDate")
+                    b.Property<DateTime>("StudentAvailableStartDate")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("StudentCV")
@@ -162,9 +162,6 @@ namespace EDUHUNT_BE.Migrations
 
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime2");
-
-                    b.Property<bool>("IsApproved")
-                        .HasColumnType("bit");
 
                     b.Property<string>("UserId")
                         .IsRequired()
@@ -256,9 +253,6 @@ namespace EDUHUNT_BE.Migrations
                     b.Property<string>("FirstName")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<bool>("IsAllow")
-                        .HasColumnType("bit");
-
                     b.Property<bool>("IsVIP")
                         .HasColumnType("bit");
 
@@ -322,9 +316,6 @@ namespace EDUHUNT_BE.Migrations
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime2");
 
-                    b.Property<bool>("IsApproved")
-                        .HasColumnType("bit");
-
                     b.Property<string>("UserId")
                         .IsRequired()
                         .HasColumnType("nvarchar(450)");
@@ -357,13 +348,8 @@ namespace EDUHUNT_BE.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Description")
-                        .HasColumnType("text");
-
-                    b.Property<string>("ImageUrl")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("IsApproved")
-                        .HasColumnType("bit");
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)");
 
                     b.Property<bool?>("IsInSite")
                         .HasColumnType("bit");
