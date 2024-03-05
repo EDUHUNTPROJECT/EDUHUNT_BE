@@ -40,6 +40,29 @@ namespace EDUHUNT_BE.Controllers
             return roadMap;
         }
 
+        // PUT: api/roadmaps/5/approve
+        [HttpPut("{id}/approve")]
+        public async Task<IActionResult> ApproveRoadMap(Guid id, [FromBody] bool isApproved)
+        {
+            var roadMap = await _context.RoadMaps.FindAsync(id);
+            if (roadMap == null)
+            {
+                return NotFound();
+            }
+
+            if (isApproved)
+            {
+                roadMap.IsApproved = true;
+                _context.Entry(roadMap).State = EntityState.Modified;
+            }
+            else
+            {
+                _context.RoadMaps.Remove(roadMap);
+            }
+            await _context.SaveChangesAsync();
+
+            return Ok(true);
+        }
 
         // POST: api/RoadMaps
         [HttpPost]

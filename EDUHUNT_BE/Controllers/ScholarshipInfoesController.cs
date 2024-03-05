@@ -73,6 +73,30 @@ namespace EDUHUNT_BE.Controllers
             return NoContent();
         }
 
+        // PUT: api/ScholarshipInfoes/5/approve
+        [HttpPut("{id}/approve")]
+        public async Task<IActionResult> ApproveScholarship(Guid id, [FromBody] bool isApproved)
+        {
+            var scholarship = await _context.ScholarshipInfos.FindAsync(id);
+            if (scholarship == null)
+            {
+                return NotFound();
+            }
+
+            if (isApproved)
+            {
+                scholarship.IsApproved = true;
+                _context.Entry(scholarship).State = EntityState.Modified;
+            }
+            else
+            {
+                _context.ScholarshipInfos.Remove(scholarship);
+            }
+            await _context.SaveChangesAsync();
+
+            return Ok(true);
+        }
+
         // POST: api/ScholarshipInfoes
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]

@@ -44,7 +44,7 @@ namespace EDUHUNT_BE.Data
                 entity.Property(e => e.UserId).IsRequired();
                 entity.Property(e => e.CreatedAt).IsRequired();
                 entity.Property(e => e.ContentURL).IsRequired();
-
+                entity.Property(e=>e.IsApproved).IsRequired();
                 entity.HasOne<ApplicationUser>()
                       .WithMany()
                       .HasForeignKey(e => e.UserId)
@@ -74,7 +74,7 @@ namespace EDUHUNT_BE.Data
                 entity.HasKey(e => e.Id);
                 entity.Property(e => e.CreatedAt).IsRequired();
                 entity.Property(e => e.ContentURL).IsRequired(false);
-
+                entity.Property(e => e.IsApproved).IsRequired();
                 entity.HasOne<ApplicationUser>()
                       .WithMany()
                       .HasForeignKey(e => e.UserId)
@@ -91,9 +91,11 @@ namespace EDUHUNT_BE.Data
                 entity.Property(e => e.SchoolName).HasMaxLength(255).IsRequired(false);
                 entity.Property(e => e.CategoryId);
                 entity.Property(e => e.IsInSite);
-                entity.Property(e=>e.Description).HasMaxLength(255).IsRequired(false);
+                entity.Property(e => e.Description).HasColumnType("text").IsRequired(false);
                 entity.Property(e => e.Url).HasMaxLength(255).IsRequired(false);
                 entity.Property(e => e.CreatedAt).IsRequired();
+                entity.Property(e => e.ImageUrl).IsRequired(false);
+                entity.Property(e => e.IsApproved).IsRequired();
                 entity.HasOne<ApplicationUser>()
                       .WithMany()
                       .HasForeignKey(e => e.AuthorId)
@@ -139,6 +141,7 @@ namespace EDUHUNT_BE.Data
                 entity.Property(e => e.Address).IsRequired(false);
                 entity.Property(e => e.Description).IsRequired(false);
                 entity.Property(e=> e.UrlAvatar).IsRequired(false);
+                entity.Property(e=>e.IsAllow).IsRequired();
                 entity.Property(e => e.IsVIP);
                 // Additional configurations for the Profile entity can be added here if needed
             });
