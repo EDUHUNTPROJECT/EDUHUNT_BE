@@ -20,6 +20,6 @@ namespace SharedClassLibrary.DTOs
         public string? Level { get; set; } = string.Empty;
 
         [Required]
-        public string? Url { get; set; } = string.Empty; // Add this property for the URL
+        public string? Url { get; set; } = string.Empty;
     }
 }
