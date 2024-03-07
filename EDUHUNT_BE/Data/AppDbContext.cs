@@ -76,6 +76,10 @@ namespace EDUHUNT_BE.Data
                 entity.Property(e => e.CreatedAt).IsRequired();
                 entity.Property(e => e.ContentURL).IsRequired(false);
                 entity.Property(e => e.IsApproved).IsRequired();
+                entity.Property(e => e.Title).IsRequired(false);
+                entity.Property(e => e.Content).IsRequired(false);
+                entity.Property(e => e.Location).IsRequired(false);
+                entity.Property(e => e.School).IsRequired(false);
                 entity.HasOne<ApplicationUser>()
                       .WithMany()
                       .HasForeignKey(e => e.UserId)

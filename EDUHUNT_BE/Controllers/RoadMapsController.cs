@@ -28,16 +28,16 @@ namespace EDUHUNT_BE.Controllers
 
         // GET: api/RoadMaps/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<RoadMap>> GetRoadMapById(Guid id)
+        public async Task<ActionResult<IEnumerable<RoadMap>>> GetRoadMapById(string id)
         {
-            var roadMap = await _context.RoadMaps.FindAsync(id);
+            var roadMaps = await _context.RoadMaps.Where(r => r.UserId == id).ToListAsync();
 
-            if (roadMap == null)
+            if (roadMaps == null)
             {
                 return NotFound();
             }
 
-            return roadMap;
+            return roadMaps;
         }
 
         // PUT: api/roadmaps/5/approve
