@@ -10,6 +10,7 @@ using EDUHUNT_BE.Model;
 
 namespace EDUHUNT_BE.Controllers
 {
+    // hehe
     [Route("api/[controller]")]
     [ApiController]
     public class ApplicationsController : ControllerBase
