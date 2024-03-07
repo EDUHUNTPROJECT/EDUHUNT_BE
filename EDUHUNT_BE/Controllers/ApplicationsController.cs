@@ -100,6 +100,57 @@ namespace EDUHUNT_BE.Controllers
             return NoContent();
         }
 
+
+        // GET: api/Applications/ScholarshipProvider/{scholarshipProviderId}
+        [HttpGet("ScholarshipProvider/{scholarshipProviderId}")]
+        public async Task<ActionResult<IEnumerable<object>>> GetApplicationsByScholarshipProvider(string scholarshipProviderId)
+        {
+            var applicationsWithScholarshipInfo = await _context.Applications
+                .Join(_context.ScholarshipInfos, // The table we are joining with
+                      application => application.ScholarshipID, // Foreign key in Applications
+                      scholarshipInfo => scholarshipInfo.Id, // Primary key in ScholarshipInfo
+                      (application, scholarshipInfo) => new { Application = application, ScholarshipInfo = scholarshipInfo }) // Result selector
+                .Where(result => result.ScholarshipInfo.AuthorId == scholarshipProviderId) // Filter by ScholarshipProviderId
+                .Select(result => new
+                {
+                    // Application details
+                    ApplicationId = result.Application.Id,
+                    StudentID = result.Application.StudentID,
+                    ScholarshipID = result.Application.ScholarshipID,
+                    StudentCV = result.Application.StudentCV,
+                    Status = result.Application.Status,
+                    MeetingURL = result.Application.MeetingURL,
+                    StudentAvailableStartDate = result.Application.StudentAvailableStartDate,
+                    StudentAvailableEndDate = result.Application.StudentAvailableEndDate,
+                    ScholarshipProviderAvailableStartDate = result.Application.ScholarshipProviderAvailableStartDate,
+                    ScholarshipProviderAvailableEndDate = result.Application.ScholarshipProviderAvailableEndDate,
+                    ApplicationReason = result.Application.ApplicationReason,
+
+                    // ScholarshipInfo details
+                    ScholarshipTitle = result.ScholarshipInfo.Title,
+                    ScholarshipBudget = result.ScholarshipInfo.Budget,
+                    ScholarshipLocation = result.ScholarshipInfo.Location,
+                    SchoolName = result.ScholarshipInfo.SchoolName,
+                    Description = result.ScholarshipInfo.Description,
+                    CategoryId = result.ScholarshipInfo.CategoryId,
+                    IsInSite = result.ScholarshipInfo.IsInSite,
+                    Url = result.ScholarshipInfo.Url,
+                    CreatedAt = result.ScholarshipInfo.CreatedAt,
+                    IsApproved = result.ScholarshipInfo.IsApproved,
+                    ImageUrl = result.ScholarshipInfo.ImageUrl
+                })
+                .ToListAsync();
+
+            if (!applicationsWithScholarshipInfo.Any())
+            {
+                return NotFound();
+            }
+
+            return applicationsWithScholarshipInfo;
+        }
+
+
+
         private bool ApplicationExists(Guid id)
         {
             return _context.Applications.Any(e => e.Id == id);
