@@ -61,8 +61,7 @@ namespace EDUHUNT_BE.Data
                 entity.Property(e => e.MeetingURL).IsRequired(false); // Adjust based on your requirements
 
                 // Assuming you want to store the dates as UTC
-                entity.Property(e => e.StudentAvailableStartDate).IsRequired(false);
-                entity.Property(e => e.StudentAvailableEndDate).IsRequired(false); 
+                entity.Property(e => e.StudentChooseDay).IsRequired(false);
                 entity.Property(e => e.ScholarshipProviderAvailableStartDate).IsRequired(false);
                 entity.Property(e => e.ScholarshipProviderAvailableEndDate).IsRequired(false);
 

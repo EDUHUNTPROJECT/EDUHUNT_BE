@@ -41,7 +41,7 @@ namespace EDUHUNT_BE.Controllers
                         Budget = scholarshipDTO.Budget,
                         // Default values for fields not present in DTO
                         CategoryId = 0, // Assuming a default value, adjust as necessary
-                        AuthorId = "97f02c2d-c2e3-4a76-b12a-b2e23cca53b1", // Assuming a default value, adjust as necessary
+                        AuthorId = "07e2fba9-3248-4121-b6df-d3ff6f152659", // Assuming a default value, adjust as necessary
                         IsInSite = false, // Assuming a default value, adjust as necessary
                                           // CreatedAt is set by default in the model
                     };

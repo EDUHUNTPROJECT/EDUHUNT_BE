@@ -24,7 +24,7 @@ namespace EDUHUNT_BE.Model
         public int? CategoryId { get; set; } = 0;
 
         [Required]
-        public string AuthorId { get; set; }
+        public string? AuthorId { get; set; }
         public bool? IsInSite { get; set; } = false;
         public string Url { get; set; }
         public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
