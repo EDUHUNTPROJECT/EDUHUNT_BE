@@ -115,14 +115,11 @@ namespace EDUHUNT_BE.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime?>("StudentAvailableEndDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime?>("StudentAvailableStartDate")
-                        .HasColumnType("datetime2");
-
                     b.Property<string>("StudentCV")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("StudentChooseDate")
+                        .HasColumnType("datetime2");
 
                     b.Property<Guid>("StudentID")
                         .HasColumnType("uniqueidentifier");
