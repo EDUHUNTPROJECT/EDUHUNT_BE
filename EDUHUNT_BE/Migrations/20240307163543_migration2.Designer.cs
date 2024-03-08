@@ -12,13 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EDUHUNT_BE.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-<<<<<<<< HEAD:EDUHUNT_BE/Migrations/20240307163532_v1.Designer.cs
-    [Migration("20240307163532_v1")]
-    partial class v1
-========
-    [Migration("20240307162742_migration1")]
-    partial class migration1
->>>>>>>> 4596db7fe386084155e680339d2c58a1fa5eb8af:EDUHUNT_BE/Migrations/20240307162742_migration1.Designer.cs
+    [Migration("20240307163543_migration2")]
+    partial class migration2
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -123,11 +118,14 @@ namespace EDUHUNT_BE.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<DateTime?>("StudentAvailableEndDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("StudentAvailableStartDate")
+                        .HasColumnType("datetime2");
+
                     b.Property<string>("StudentCV")
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime?>("StudentChooseDate")
-                        .HasColumnType("datetime2");
 
                     b.Property<Guid>("StudentID")
                         .HasColumnType("uniqueidentifier");
