@@ -56,13 +56,12 @@ namespace EDUHUNT_BE.Data
                 entity.HasKey(e => e.Id);
                 entity.Property(e => e.StudentID).IsRequired();
                 entity.Property(e => e.ScholarshipID).IsRequired();
-                entity.Property(e => e.StudentCV).IsRequired(false); // Adjust based on your requirements
+                entity.Property(e => e.StudentCV).IsRequired(false);
                 entity.Property(e => e.Status).IsRequired();
-                entity.Property(e => e.MeetingURL).IsRequired(false); // Adjust based on your requirements
+                entity.Property(e => e.MeetingURL).IsRequired(false);
 
                 // Assuming you want to store the dates as UTC
-                entity.Property(e => e.StudentAvailableStartDate).IsRequired(false);
-                entity.Property(e => e.StudentAvailableEndDate).IsRequired(false); 
+                entity.Property(e => e.StudentChooseDate).IsRequired(false);
                 entity.Property(e => e.ScholarshipProviderAvailableStartDate).IsRequired(false);
                 entity.Property(e => e.ScholarshipProviderAvailableEndDate).IsRequired(false);
 
