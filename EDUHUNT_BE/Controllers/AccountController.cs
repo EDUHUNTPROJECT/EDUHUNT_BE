@@ -101,7 +101,7 @@ namespace EDUHUNT_BE.Controllers
             var result = await userManager.ConfirmEmailAsync(user, token);
 
             if (result.Succeeded)
-                return Ok();
+                return Redirect("http://localhost:3000/login");
             else
                 return BadRequest();
         }

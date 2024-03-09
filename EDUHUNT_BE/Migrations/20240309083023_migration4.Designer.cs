@@ -4,6 +4,7 @@ using EDUHUNT_BE.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EDUHUNT_BE.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240309083023_migration4")]
+    partial class migration4
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -290,18 +293,15 @@ namespace EDUHUNT_BE.Migrations
                         .HasMaxLength(255)
                         .HasColumnType("nvarchar(255)");
 
-                    b.Property<string>("AnswerFile")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<Guid?>("AnswerId")
                         .IsRequired()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<string>("AskerFile")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<Guid>("AskerId")
                         .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("AttachFile")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime2");

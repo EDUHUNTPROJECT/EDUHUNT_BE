@@ -66,6 +66,7 @@ namespace EDUHUNT_BE.Data
                 entity.Property(e => e.ScholarshipProviderAvailableEndDate).IsRequired(false);
 
                 entity.Property(e => e.ApplicationReason).IsRequired(false);
+                entity.Property(e => e.AttachFile).IsRequired(false);
                 // Optional: Add relationships if there are any
                 // For example, to link to Student and ScholarshipProvider entities
             });
@@ -128,6 +129,8 @@ namespace EDUHUNT_BE.Data
                 entity.Property(e => e.Question).HasMaxLength(255).IsRequired();
                 entity.Property(e => e.Answer).HasMaxLength(255).IsRequired();
                 entity.Property(e => e.CreatedAt).IsRequired();
+                entity.Property(e => e.AnswerFile).IsRequired(false);
+                entity.Property(e => e.AskerFile).IsRequired(false);
 
                 // Additional configurations for QA entity can be added here if needed
             });

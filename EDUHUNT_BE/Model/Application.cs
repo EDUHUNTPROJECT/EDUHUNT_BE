@@ -15,8 +15,7 @@
         public DateTime? StudentChooseDay { get; set; }
         public DateTime? ScholarshipProviderAvailableStartDate { get; set; }
         public DateTime? ScholarshipProviderAvailableEndDate { get; set; }
-
-
         public string ApplicationReason { get; set; }
+        public string AttachFile { get; set; }
     }
 }

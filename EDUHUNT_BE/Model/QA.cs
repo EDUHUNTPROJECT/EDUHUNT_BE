@@ -9,7 +9,7 @@
         public string Question { get; set; }
         public string Answer { get; set; }
         public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
-
-
+        public string AskerFile { get; set; }
+        public string AnswerFile { get; set; }
     }
 }

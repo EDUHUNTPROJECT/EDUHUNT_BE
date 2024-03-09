@@ -148,7 +148,7 @@ namespace EDUHUNT_BE.Repositories
                 return new LoginResponse(false, null!, null!, "User not found");
 
             if (!getUser.EmailConfirmed)
-                return new LoginResponse(false, null!, null!, "email not confirmed. please confirm your email before logging in.");
+                return new LoginResponse(false, null!, null!, "Email not confirmed. Please confirm your email before logging in.");
 
             bool checkUserPasswords = await userManager.CheckPasswordAsync(getUser, loginDTO.Password);
             if (!checkUserPasswords)
