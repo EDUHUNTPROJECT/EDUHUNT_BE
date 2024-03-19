@@ -38,6 +38,80 @@ namespace EDUHUNT_BE.Repositories
             this.context = context;
             // Assign the injected AppDbContext to the private field
         }
+        public async Task<LoginResponse> LoginWithGoogle(UserDTO userDTO)
+        {
+            if (userDTO is null)
+                return new LoginResponse(false, null, null, "Model is empty");
+
+            var existingUser = await userManager.FindByEmailAsync(userDTO.Email);
+
+            // If user exists, process login
+            if (existingUser != null)
+            {
+                if (!existingUser.EmailConfirmed)
+                    return new LoginResponse(false, null, null, "Email not confirmed. Please confirm your email before logging in.");
+
+                var userRole = await userManager.GetRolesAsync(existingUser);
+                var userSession = new UserSession(existingUser.Id, existingUser.Name, existingUser.Email, userRole.FirstOrDefault());
+                string token = GenerateToken(userSession);
+
+                return new LoginResponse(true, token, existingUser.Id, "Login completed");
+            }
+
+            // If user does not exist, create new user
+            var newUser = new ApplicationUser()
+            {
+                Name = userDTO.Name,
+                Email = userDTO.Email,
+                UserName = userDTO.Email // Assuming password is not directly set here since external logins don't use local passwords
+            };
+
+            var createUserResult = await userManager.CreateAsync(newUser);
+            if (!createUserResult.Succeeded)
+            {
+                var errors = createUserResult.Errors.Select(e => e.Description);
+                var errorMessage = string.Join(", ", errors);
+                return new LoginResponse(false, null, null, errorMessage);
+            }
+
+            // Assign role to new user
+            await AssignRole(newUser, DetermineRole(userDTO.RoleId)); // Using a helper method to determine role
+
+            // Create profile for new user
+            try
+            {
+                var profile = new Profile
+                {
+                    UserId = Guid.Parse(newUser.Id),
+                    UrlAvatar = "https://via.placeholder.com/150"
+                };
+
+                context.Profile.Add(profile);
+                await context.SaveChangesAsync();
+            }
+            catch (Exception ex)
+            {
+                return new LoginResponse(false, null, null, $"An error occurred while saving the profile: {ex.Message}");
+            }
+
+            // Generate token for new user
+            var newUserRole = await userManager.GetRolesAsync(newUser);
+            var newUserSession = new UserSession(newUser.Id, newUser.Name, newUser.Email, newUserRole.FirstOrDefault());
+            string newUserToken = GenerateToken(newUserSession);
+
+            return new LoginResponse(true, newUserToken, newUser.Id, "Account created and login completed");
+        }
+
+        private string DetermineRole(int roleId)
+        {
+            switch (roleId)
+            {
+                case 1: return "User";
+                case 2: return "Scholarship Provider";
+                case 3: return "Mentor";
+                default: return "Admin"; // Assuming admin as default, adjust as necessary
+            }
+        }
 
         public async Task<GeneralResponse> CreateAccount(UserDTO userDTO)
         {
