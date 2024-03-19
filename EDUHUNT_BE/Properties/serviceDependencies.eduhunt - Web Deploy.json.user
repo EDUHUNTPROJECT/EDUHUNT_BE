@@ -1,0 +1,24 @@
+{
+  "dependencies": {
+    "apis1": {
+      "restored": true,
+      "restoreTime": "2024-03-19T07:57:52.4287852Z"
+    },
+    "mssql1": {
+      "restored": true,
+      "restoreTime": "2024-03-19T08:14:09.4936178Z"
+    }
+  },
+  "parameters": {
+    "apis1.resourceGroupName": {
+      "Name": "apis1.resourceGroupName",
+      "Type": "resourceGroup",
+      "Value": "eduhunt"
+    },
+    "apis1.subscriptionId": {
+      "Name": "apis1.subscriptionId",
+      "Type": "subscription",
+      "Value": "0e930b5b-52ec-45c8-b5da-170daad62fe8"
+    }
+  }
+}

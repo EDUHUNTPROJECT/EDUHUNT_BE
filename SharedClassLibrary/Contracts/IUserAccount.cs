@@ -8,6 +8,7 @@ namespace SharedClassLibrary.Contracts
         Task<GeneralResponse> CreateAccount(UserDTO userDTO);
         Task<GeneralResponse> ChangePassword(string userId, string currentPassword, string newPassword);
         Task<GeneralResponse> ForgotPassword(string email, string newPassword);
+        Task<LoginResponse> LoginWithGoogle(UserDTO userDTO);
         Task<LoginResponse> LoginAccount(LoginDTO loginDTO);
         Task<LoginResponse> LogoutAccount();
         Task<List<ListUserDTO>> ListUser();

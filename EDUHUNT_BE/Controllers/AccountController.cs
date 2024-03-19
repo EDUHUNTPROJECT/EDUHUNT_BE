@@ -132,7 +132,12 @@ namespace EDUHUNT_BE.Controllers
             var response = await userAccount.ForgotPassword(passwordDTO.Email, passwordDTO.NewPassword);
             return Ok(response);
         }
-
+        [HttpPost("loginWithGoogle")]
+        public async Task<IActionResult> LoginWithGoogle(UserDTO UserDTO)
+        {
+            var response = await userAccount.LoginWithGoogle(UserDTO);
+            return Ok(response);
+        }
         [HttpPost("logout")]
         public async Task<IActionResult> Logout()
         {
