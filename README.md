@@ -1,2 +1,1 @@
 # EDUHUNT_BE
-BE

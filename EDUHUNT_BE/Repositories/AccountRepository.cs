@@ -1,20 +1,14 @@
 ﻿using EDUHUNT_BE.Data;
-using EDUHUNT_BE.Helper;
 using EDUHUNT_BE.Model;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Identity.UI.Services;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
-using Microsoft.VisualStudio.Web.CodeGenerators.Mvc.Templates.BlazorIdentity.Pages;
 using SharedClassLibrary.Contracts;
 using SharedClassLibrary.DTOs;
 using System.Data;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
-using System.Security.Policy;
 using System.Text;
-using System.Text.Encodings.Web;
 using static SharedClassLibrary.DTOs.ServiceResponses;
 
 namespace EDUHUNT_BE.Repositories

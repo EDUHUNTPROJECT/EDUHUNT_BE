@@ -1,6 +1,5 @@
 ﻿// IScholarship interface
 using SharedClassLibrary.DTOs;
-using static SharedClassLibrary.DTOs.ServiceResponses;
 
 namespace SharedClassLibrary.Contracts
 {
